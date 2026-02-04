@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Mail, Phone, Linkedin, Trash2, Plus, Layout, Type, Briefcase, GraduationCap, Code, Award, Languages, Heart, Rocket, BookOpen, UserCheck } from 'lucide-react';
 
+/**
+ * Interactive Resume Builder Component
+ * Features a real-time editing sidebar and an A4-optimized preview pane.
+ */
 const App = () => {
   const [data, setData] = useState({
+    // --- Initial State Definition ---
     name: "Your name",
     title: "Your title",
     contact: {
@@ -24,10 +29,10 @@ const App = () => {
     ],
     education: [
       {
-        degree: "degree name",
+        degree: "Degree Name",
         institution: "Name of the academic institution",
-        startDate: "2020",
-        endDate: "2024",
+        startDate: "start date",
+        endDate: "end date",
         gpa: "GPA: XX",
         relevantCourses: ["Course Name 1", "Course Name 2"]
       }
@@ -36,8 +41,8 @@ const App = () => {
       {
         role: "Job Title",
         company: "Company Name",
-        startDate: "Start Date",
-        endDate: "End Date",
+        startDate: "start date",
+        endDate: "end date",
         points: ["Key responsibility or achievement in this role.", "Another significant contribution."]
       }
     ],
@@ -50,16 +55,19 @@ const App = () => {
     ],
     militaryEntries: [
       {
-        unit: "unit",
-        role: "role",
+        unit: "Unit",
+        role: "Role",
         startDate: "start date",
         endDate: "end date",
-        type: "service type",
+        type: "Service Type",
         points: ["Description of a major activity or responsibility in the military service."]
       }
     ]
   });
 
+  // --- State Management Helpers ---
+
+  /** Updates a nested string field based on a dot-notation path */
   const updateField = (path, value) => {
     const newData = { ...data };
     let current = newData;
@@ -71,6 +79,7 @@ const App = () => {
     setData(newData);
   };
 
+  /** Adds a new item to a specified array within the state */
   const addArrayItem = (path, defaultValue) => {
     const newData = { ...data };
     let current = newData;
@@ -82,6 +91,7 @@ const App = () => {
     setData(newData);
   };
 
+  /** Removes an item from an array at a specific index */
   const removeArrayItem = (path, index) => {
     const newData = { ...data };
     let current = newData;
@@ -104,11 +114,11 @@ const App = () => {
   return (
     <div className="min-h-screen bg-slate-50 flex font-sans text-right">
       
-      {/* סרגל עריכה צדדי */}
+      {/* --- Sidebar Editor --- */}
       <div className="w-[450px] bg-white border-r border-slate-200 h-screen overflow-y-auto sticky top-0 p-6 print:hidden shadow-xl z-10">
         <div className="flex items-center justify-between mb-8 border-b pb-4">
           <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-            <Layout className="text-blue-600" size={24} /> עורך תבנית
+            <Layout className="text-blue-600" size={24} /> Template Editor
           </h2>
           <button 
             onClick={() => window.print()}
@@ -119,7 +129,7 @@ const App = () => {
         </div>
 
         <div className="space-y-10" dir="rtl">
-          {/* פרטים אישיים */}
+          {/* Personal Details*/}
           <section>
             <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
               <Type size={14} /> פרטים אישיים
@@ -135,7 +145,7 @@ const App = () => {
             </div>
           </section>
 
-          {/* תקציר */}
+          {/* Professional Summary */}
           <section>
             <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest mb-4 flex items-center gap-2 text-right">תקציר (Summary)</h3>
             <textarea 
@@ -146,7 +156,7 @@ const App = () => {
             />
           </section>
 
-          {/* השכלה */}
+          {/* Education */}
           <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
               <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right"><GraduationCap size={14} /> השכלה</h3>
@@ -187,7 +197,7 @@ const App = () => {
             ))}
           </section>
 
-          {/* ניסיון תעסוקתי - Experience */}
+          {/* Experience*/}
           <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
               <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right"><UserCheck size={14} /> ניסיון תעסוקתי (Experience)</h3>
@@ -225,7 +235,7 @@ const App = () => {
             ))}
           </section>
 
-          {/* פרויקטים */}
+          {/* Projects */}
           <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
               <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right"><Rocket size={14} /> פרויקטים (Projects)</h3>
@@ -241,7 +251,7 @@ const App = () => {
             ))}
           </section>
 
-          {/* שירות צבאי */}
+          {/* Military Service*/}
           <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
               <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right"><Briefcase size={14} /> שירות צבאי (Military Service)</h3>
@@ -279,7 +289,7 @@ const App = () => {
             ))}
           </section>
 
-          {/* מיומנויות טכניות */}
+          {/* Technical Skills */}
           <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
               <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right"><Code size={14} /> מיומנויות טכניות</h3>
@@ -299,7 +309,7 @@ const App = () => {
             </div>
           </section>
           
-          {/* מיומנויות רכות */}
+          {/* Soft Skills */}
           <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
               <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right"><Code size={14} /> מיומנויות רכות</h3>
@@ -319,7 +329,7 @@ const App = () => {
             </div>
           </section>
 
-          {/* הישגים */}
+          {/* Achievements */}
           <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
               <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right"><Award size={14} /> הישגים (Achievements)</h3>
@@ -334,7 +344,7 @@ const App = () => {
             ))}
           </section>
 
-          {/* שפות */}
+          {/* Languages */}
           <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
               <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right"><Languages size={14} /> שפות</h3>
@@ -353,7 +363,7 @@ const App = () => {
             </div>
           </section>
 
-          {/* התנדבות */}
+          {/* Volunteering */}
           <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
               <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right"><Heart size={14} /> התנדבות (Volunteering)</h3>
@@ -377,11 +387,11 @@ const App = () => {
         </div>
       </div>
 
-      {/* תצוגה מקדימה של קורות החיים */}
+      {/* --- Resume Preview Pane --- */}
       <div className="flex-1 flex justify-center py-10 overflow-y-auto bg-slate-200">
         <div className="bg-white shadow-2xl print:shadow-none print:m-0 h-fit" style={{ width: '210mm', minHeight: '297mm' }}>
           
-          {/* Header */}
+          {/* Document Header */}
           <div className="bg-[#1e293b] text-white py-10 px-12 text-center">
             <h1 className="text-4xl font-bold tracking-wider mb-2 uppercase">{data.name}</h1>
             <p className="text-blue-400 text-lg font-medium mb-5">{data.title}</p>
@@ -392,11 +402,13 @@ const App = () => {
             </div>
           </div>
 
+
+          {/* Document Body */}
           <div className="flex p-12 gap-4" dir="ltr">
             {/* Left Column (Narrow) */}
             <div className="w-[30%] space-y-6 text-left">
 
-              {/* Tech Skills */}
+              {/* Technical Skills */}
               <section>
                 <h2 className={sectionHeaderStyle}>Tech Skills</h2>
                 <ul className="space-y-1">
@@ -574,69 +586,66 @@ const App = () => {
         </div>
       </div>
 
+      {/* --- Print & Custom Styles --- */}
       <style>{`
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-body { 
-  font-family: 'Inter', sans-serif; 
-}
+        body { 
+          font-family: 'Inter', sans-serif; 
+        }
 
-@media print {
-  /* הגדרת דף בסיסית */
-  @page {
-    size: A4;
-    margin: 0 !important;
-  }
+        @media print {
+          /* Global Print Setup */
+          @page {
+            size: A4;
+            margin: 0 !important;
+          }
 
-  /* כפיית צבעי רקע */
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    color-adjust: exact !important;
-  }
+          /* Force browser to render background colors and graphics */
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            color-adjust: exact !important;
+          }
 
-  /* איפוס והכנה להדפסה */
-  html, body {
-    width: 210mm;
-    height: 297mm;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: white !important;
-    overflow: hidden !important;
-  }
+          html, body {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: white !important;
+            overflow: hidden !important;
+          }
 
-  /* הסתרת ממשק העריכה */
-  .print\:hidden, 
-  aside, 
-  button, 
-  .w-\[450px\] { 
-    display: none !important; 
-  }
+          /* Hide Editor and Non-Print elements */
+          .print\:hidden, aside, button, .w-\[450px\] { 
+            display: none !important; 
+          }
 
-  /* הכרחת הפריסה לשמור על מבנה העמודות */
-  .flex {
-    display: flex !important;
-    flex-direction: row !important;
-  }
+          /* Layout structure for PDF */
+          .flex {
+            display: flex !important;
+            flex-direction: row !important;
+          }
 
-  /* הגדרת המכולה המרכזית של קורות החיים */
-  .bg-white.shadow-2xl {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 210mm !important;
-    height: 297mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
+          /* Position the resume container specifically for PDF generation */
+          .bg-white.shadow-2xl {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 210mm !important;
+            height: 297mm !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            transform: none !important;
+          }
 
-  /* מניעת שבירת שורות לא רצויה */
-  section {
-    page-break-inside: avoid !important;
-  }
-}   
+          /* Prevent content breaks between pages */
+          section {
+            page-break-inside: avoid !important;
+          }
+        }   
       `}</style>
     </div>
   );
