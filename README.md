@@ -2,6 +2,8 @@
 
 A professional React-based application designed to create interactive resumes with real-time preview and PDF export optimization.
 
+https://aviel-yitzhak.github.io/cv-app/
+
 ## 🚀 Development Milestones
 - **Phase 1:** Infrastructure setup using React + Vite.
 - **Phase 2:** Integration of Tailwind CSS for a modern, responsive UI.
