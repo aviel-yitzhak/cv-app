@@ -392,9 +392,9 @@ const App = () => {
         <div className="bg-white shadow-2xl print:shadow-none print:m-0 h-fit" style={{ width: '210mm', minHeight: '297mm' }}>
           
           {/* Document Header */}
-          <div className="bg-[#1e293b] text-white py-10 px-12 text-center">
-            <h1 className="text-4xl font-bold tracking-wider mb-2 uppercase">{data.name}</h1>
-            <p className="text-blue-400 text-lg font-medium mb-5">{data.title}</p>
+          <div className="bg-[#1e293b] text-white py-6 px-12 text-center">
+            <h1 className="text-3xl font-bold tracking-wider mb-2 uppercase">{data.name}</h1>
+            <p className="text-blue-400 text-lg font-medium mb-3">{data.title}</p>
             <div className="flex justify-center items-center gap-8 text-[11px] text-gray-300">
               <div className="flex items-center gap-2"><Phone size={12} className="text-gray-400" /><span>{data.contact.phone}</span></div>
               <div className="flex items-center gap-2"><Mail size={12} className="text-gray-400" /><span>{data.contact.email}</span></div>
@@ -404,9 +404,9 @@ const App = () => {
 
 
           {/* Document Body */}
-          <div className="flex p-12 gap-4" dir="ltr">
+          <div className="flex p-8 gap-4" dir="ltr">
             {/* Left Column (Narrow) */}
-            <div className="w-[30%] space-y-6 text-left">
+            <div className="w-[30%] space-y-4 text-left">
 
               {/* Technical Skills */}
               <section>
@@ -494,7 +494,7 @@ const App = () => {
               {/* Education */}
               <section>
                 <h2 className={sectionHeaderStyle}>Education</h2>
-                <div className="space-y-8">
+                <div className="space-y-4">
                   {data.education.map((edu, i) => (
                     <div key={i}>
                       <div className="flex justify-between items-baseline">
@@ -518,7 +518,7 @@ const App = () => {
               {/* Experience */}
               <section>
                 <h2 className={sectionHeaderStyle}>Experience</h2>
-                <div className="space-y-8">
+                <div className="space-y-4">
                   {data.experienceEntries.map((exp, i) => (
                     <div key={i}>
                       <div className="flex justify-between items-baseline">
@@ -559,7 +559,7 @@ const App = () => {
               {/* Military Service */}
               <section>
                 <h2 className={sectionHeaderStyle}>Military Service</h2>
-                <div className="space-y-8">
+                <div className="space-y-4">
                   {data.militaryEntries.map((entry, i) => (
                     <div key={i}>
                       <div className="flex justify-between items-baseline">
