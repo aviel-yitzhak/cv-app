@@ -14,64 +14,7 @@ const initialResumeData = import.meta.env.PROD ? exampleData : personalData;
 const App = () => {
   const [data, setData] = useState(initialResumeData)
   
-  // const [data, setData] = useState({
-  //   // --- Initial State Definition ---
-  //   name: "Your name",
-  //   title: "Your title",
-  //   contact: {
-  //     phone: "05X-XXXXXXX",
-  //     email: "yourname@email.com",
-  //     linkedin: "linkedin.com/in/username"
-  //   },
-  //   summary: "Here you should write a short paragraph (3-5 lines) about your experience, abilities, and professional aspirations.",
-  //   techSkills: ["add tech skills"],
-  //   softSkills: ["add sofr skills"],
-  //   achievements: [
-  //     { title: "Name of achievement", desc: "A brief description of the achievement and the reason for receiving it." }
-  //   ],
-  //   languages: [
-  //     { name: "language", level: "level" }
-  //   ],
-  //   volunteering: [
-  //     { role: "", org: "roll/organization name", startDate: "start date", endDate: "end date", desc: "A brief description of your activities and contributions." }
-  //   ],
-  //   education: [
-  //     {
-  //       degree: "Degree Name",
-  //       institution: "Name of the academic institution",
-  //       startDate: "start date",
-  //       endDate: "end date",
-  //       gpa: "GPA: XX",
-  //       relevantCourses: ["Course Name 1", "Course Name 2"]
-  //     }
-  //   ],
-  //   experienceEntries: [
-  //     {
-  //       role: "Job Title",
-  //       company: "Company Name",
-  //       startDate: "start date",
-  //       endDate: "end date",
-  //       points: ["Key responsibility or achievement in this role.", "Another significant contribution."]
-  //     }
-  //   ],
-  //   projects: [
-  //     {
-  //       name: "Project Name",
-  //       tools: "Tools you used",
-  //       description: "A short explanation of the project, its goals, and your contribution."
-  //     }
-  //   ],
-  //   militaryEntries: [
-  //     {
-  //       unit: "Unit",
-  //       role: "Role",
-  //       startDate: "start date",
-  //       endDate: "end date",
-  //       type: "Service Type",
-  //       points: ["Description of a major activity or responsibility in the military service."]
-  //     }
-  //   ]
-  // });
+
 
   // --- State Management Helpers ---
 
@@ -406,7 +349,17 @@ const App = () => {
             <div className="flex justify-center items-center gap-8 text-[11px] text-gray-300">
               <div className="flex items-center gap-2"><Phone size={12} className="text-gray-400" /><span>{data.contact.phone}</span></div>
               <div className="flex items-center gap-2"><Mail size={12} className="text-gray-400" /><span>{data.contact.email}</span></div>
-              <div className="flex items-center gap-2"><Linkedin size={12} className="text-gray-400" /><span>{data.contact.linkedin}</span></div>
+              <div className="flex items-center gap-2">
+  <Linkedin size={12} className="text-gray-400" />
+  <a 
+    href={`https://${data.contact.linkedin}`} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:underline hover:text-blue-300 transition-colors"
+  >
+    {data.contact.linkedin}
+  </a>
+</div>
             </div>
           </div>
 
