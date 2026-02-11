@@ -3,7 +3,7 @@ import { Mail, Phone, Linkedin, Github, Trash2, Plus, Layout, Type, Briefcase, G
 
 // Conditional import: use personal data in dev, example data in production
 import { initialResumeData as personalData } from './resumeData.js';
-
+import { initialResumeData as exampleData } from './resumeData.example.js';
 
 const initialResumeData = import.meta.env.PROD ? exampleData : personalData;
 
