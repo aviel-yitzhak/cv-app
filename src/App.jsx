@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Linkedin, Trash2, Plus, Layout, Type, Briefcase, GraduationCap, Code, Award, Languages, Heart, Rocket, BookOpen, UserCheck } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, Trash2, Plus, Layout, Type, Briefcase, GraduationCap, Code, Award, Languages, Heart, Rocket, BookOpen, UserCheck } from 'lucide-react';
 
 // Conditional import: use personal data in dev, example data in production
 import { initialResumeData as personalData } from './resumeData.js';
@@ -61,6 +61,7 @@ const App = () => {
   const dateStyle = "text-[10px] text-slate-400 italic font-medium shrink-0";
   const bulletPointStyle = "text-[11px] text-slate-700 flex items-start gap-2 leading-normal";
   const bulletDotStyle = "text-blue-500 shrink-0 select-none mt-[1px]";
+  
 
   return (
     <div className="min-h-screen bg-slate-50 flex font-sans text-right">
@@ -75,7 +76,7 @@ const App = () => {
             onClick={() => window.print()}
             className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-blue-700 transition flex items-center gap-2"
           >
-            הורדה כ-PDF
+           save as PDF
           </button>
         </div>
 
@@ -92,6 +93,7 @@ const App = () => {
                 <input placeholder="טלפון" className="w-full border p-2 rounded text-sm text-right" value={data.contact.phone || ''} onChange={(e) => updateField('contact.phone', e.target.value)} />
                 <input placeholder="אימייל" className="w-full border p-2 rounded text-sm text-right" value={data.contact.email || ''} onChange={(e) => updateField('contact.email', e.target.value)} />
                 <input placeholder="לינקדאין" className="w-full border p-2 rounded text-sm text-right" value={data.contact.linkedin || ''} onChange={(e) => updateField('contact.linkedin', e.target.value)} />
+                <input placeholder="גיטהאב" className="w-full border p-2 rounded text-sm text-right" value={data.contact.github || ''} onChange={(e) => updateField('contact.linkedin', e.target.value)} />
               </div>
             </div>
           </section>
@@ -241,7 +243,7 @@ const App = () => {
           </section>
 
           {/* Technical Skills */}
-          <section>
+          {/* <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
               <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right"><Code size={14} /> מיומנויות טכניות</h3>
               <button onClick={() => addArrayItem('techSkills', "")} className="text-blue-600 hover:text-blue-800"><Plus size={18} /></button>
@@ -258,8 +260,79 @@ const App = () => {
                 </div>
               ))}
             </div>
-          </section>
+          </section> */}
+
+
+{/* Technical Skills - Sidebar */}
+<section>
+  <div className="flex justify-between items-center mb-4 flex-row-reverse">
+    <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest flex items-center gap-2 text-right">
+      <Code size={14} /> מיומנויות טכניות
+    </h3>
+    <button 
+      onClick={() => addArrayItem('techSkills', { category: "", items: [""] })} 
+      className="text-blue-600 hover:text-blue-800"
+    >
+      <Plus size={18} />
+    </button>
+  </div>
+  <div className="space-y-4">
+    {data.techSkills.map((skill, i) => (
+      <div key={i} className="p-3 border rounded-lg bg-slate-50 relative group text-right">
+        <button 
+          onClick={() => removeArrayItem('techSkills', i)} 
+          className="absolute -left-2 -top-2 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition shadow-sm"
+        >
+          <Trash2 size={12}/>
+        </button>
+        
+        {/* שם הקטגוריה */}
+        <input 
+          placeholder="שם קטגוריה (למשל: Languages)" 
+          className="w-full bg-transparent font-bold mb-2 outline-none text-right text-sm border-b pb-1" 
+          value={skill.category || ''} 
+          onChange={(e) => updateField(`techSkills.${i}.category`, e.target.value)} 
+        />
+
+        {/* רשימת רובריקות (Items) */}
+        <div className="space-y-2">
+          {skill.items.map((item, itemIdx) => (
+            <div key={itemIdx} className="flex gap-2 items-center flex-row-reverse">
+              <input 
+                placeholder="פריט (למשל: Python)" 
+                className="flex-1 bg-white border p-1 rounded text-xs text-right outline-none" 
+                value={item} 
+                onChange={(e) => {
+                  const newItems = [...skill.items];
+                  newItems[itemIdx] = e.target.value;
+                  updateField(`techSkills.${i}.items`, newItems);
+                }} 
+              />
+              <button 
+                onClick={() => {
+                  const newItems = skill.items.filter((_, idx) => idx !== itemIdx);
+                  updateField(`techSkills.${i}.items`, newItems);
+                }}
+                className="text-red-400 hover:text-red-600"
+              >
+                <Trash2 size={10}/>
+              </button>
+            </div>
+          ))}
+          <button 
+            onClick={() => updateField(`techSkills.${i}.items`, [...skill.items, ""])}
+            className="text-blue-500 text-[10px] font-bold flex items-center gap-1 mr-auto"
+          >
+            + הוסף פריט
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
           
+
           {/* Soft Skills */}
           <section>
             <div className="flex justify-between items-center mb-4 flex-row-reverse">
@@ -350,16 +423,20 @@ const App = () => {
               <div className="flex items-center gap-2"><Phone size={12} className="text-gray-400" /><span>{data.contact.phone}</span></div>
               <div className="flex items-center gap-2"><Mail size={12} className="text-gray-400" /><span>{data.contact.email}</span></div>
               <div className="flex items-center gap-2">
-  <Linkedin size={12} className="text-gray-400" />
-  <a 
-    href={`https://${data.contact.linkedin}`} 
-    target="_blank" 
-    rel="noopener noreferrer"
-    className="hover:underline hover:text-blue-300 transition-colors"
-  >
-    {data.contact.linkedin}
-  </a>
-</div>
+                <Linkedin size={12} className="text-gray-400" />
+                <a href={`https://${data.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-300 transition-colors">
+                  {data.contact.linkedin}
+                </a>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Github size={12} className="text-gray-400" />
+                <a href={`https://${data.contact.github}`} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-300 transition-colors">
+                  {data.contact.github}
+                </a>
+              </div>
+
+              
             </div>
           </div>
 
@@ -370,7 +447,7 @@ const App = () => {
             <div className="w-[30%] space-y-4 text-left">
 
               {/* Technical Skills */}
-              <section>
+              {/* <section>
                 <h2 className={sectionHeaderStyle}>Tech Skills</h2>
                 <ul className="space-y-1">
                   {data.techSkills.map((skill, i) => (
@@ -380,7 +457,29 @@ const App = () => {
                     </li>
                   ))}
                 </ul>
-              </section>
+              </section> */}
+
+
+{/* Technical Skills - Preview */}
+<section>
+  <h2 className={sectionHeaderStyle}>Tech Skills</h2>
+  <ul className="space-y-1">
+    {data.techSkills.map((skill, i) => (
+      <li key={i} className={bulletPointStyle}>
+        <span className={bulletDotStyle}>•</span>
+        <div className="flex-1">
+          {skill.category && (
+            <span className="font-bold text-slate-800">{skill.category}: </span>
+          )}
+          <span className="text-slate-700">
+            {skill.items.filter(item => item.trim() !== "").join(', ')}
+          </span>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>
+
 
               {/* Soft Skills */}
               <section>
@@ -402,7 +501,7 @@ const App = () => {
                   {data.achievements.map((ach, i) => (
                     <div key={i}>
                       <h3 className={entryTitleStyle}>{ach.title}</h3>
-                      <p className="text-[10px] text-slate-500 mt-0.5 leading-normal italic">{ach.desc}</p>
+                      <p className="text-[11px] text-slate-700 leading-relaxed">{ach.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -411,7 +510,7 @@ const App = () => {
               {/* Languages */}
               <section>
                 <h2 className={sectionHeaderStyle}>Languages</h2>
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   {data.languages.map((l, i) => (
                     <div key={i} className="flex justify-between text-[11px]">
                       <span className="font-bold text-slate-800">{l.name}</span>
@@ -424,14 +523,14 @@ const App = () => {
               {/* Volunteering */}
               <section>
                 <h2 className={sectionHeaderStyle}>Volunteering</h2>
-                <div className="space-y-5">
+                <div className="space-y-1.5">
                   {data.volunteering.map((v, i) => (
                     <div key={i}>
                       <div className="flex justify-between items-baseline">
                         <h3 className={entryTitleStyle}>{v.org}</h3>
                         <span className={dateStyle}>{v.startDate} – {v.endDate}</span>
                       </div>
-                      <p className="text-[10px] text-slate-500 leading-normal italic mt-0.5">{v.desc}</p>
+                      <p className="text-[11px] text-slate-700 leading-relaxed">{v.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -447,7 +546,7 @@ const App = () => {
               {/* Summary */}
               <section>
                 <h2 className={sectionHeaderStyle}>Summary</h2>
-                <p className="text-[11px] text-slate-700 leading-relaxed text-justify">
+                <p className="text-[11px] text-slate-700 leading-relaxed text-left">
                    {data.summary}
                 </p>
               </section>
@@ -502,14 +601,15 @@ const App = () => {
               {/* Projects */}
               <section>
                 <h2 className={sectionHeaderStyle}>Projects</h2>
-                <div className="space-y-6">
+                <div className="space-y-2">
                   {data.projects.map((proj, i) => (
                     <div key={i}>
                       <div className="flex justify-between items-baseline mb-0.5">
                         <h3 className="text-[12px] font-bold text-slate-900">{proj.name}</h3>
                       </div>
+
                       <p className="text-[10px] text-slate-400 italic font-medium mb-0.5">{proj.tools}</p>
-                      <p className="text-[11px] text-slate-700 leading-normal text-justify">
+                      <p className="text-[11px] text-slate-700 leading-normal text-left">
                         {proj.description}
                       </p>
                     </div>

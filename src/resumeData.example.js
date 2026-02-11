@@ -4,7 +4,8 @@ export const initialResumeData = {
   contact: {
     phone: "05X-XXXXXXX",
     email: "yourname@email.com",
-    linkedin: "linkedin.com/in/username"
+    linkedin: "linkedin.com/in/username",
+    github: "github.com/username"
   },
   summary: "Here you should write a short paragraph (3-5 lines) about your experience, abilities, and professional aspirations.",
   techSkills: ["add tech skills"],
