@@ -8,7 +8,7 @@ export const initialResumeData = {
     github: "github.com/username"
   },
   summary: "Here you should write a short paragraph (3-5 lines) about your experience, abilities, and professional aspirations.",
-  techSkills: { category: "Programming Languages", items: ["Python", "C", "C++", "C#", "Java", "JavaScript"] },
+  techSkills: [{ category: "Programming Languages", items: ["Python", "C", "C++", "C#", "Java", "JavaScript"] }],
 
   softSkills: ["add soft skills"],
   achievements: [
