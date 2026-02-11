@@ -1,69 +1,72 @@
 import React, { useState } from 'react';
 import { Mail, Phone, Linkedin, Trash2, Plus, Layout, Type, Briefcase, GraduationCap, Code, Award, Languages, Heart, Rocket, BookOpen, UserCheck } from 'lucide-react';
+import { initialResumeData } from './resumeData';
 
 /**
  * Interactive Resume Builder Component
  * Features a real-time editing sidebar and an A4-optimized preview pane.
  */
 const App = () => {
-  const [data, setData] = useState({
-    // --- Initial State Definition ---
-    name: "Your name",
-    title: "Your title",
-    contact: {
-      phone: "05X-XXXXXXX",
-      email: "yourname@email.com",
-      linkedin: "linkedin.com/in/username"
-    },
-    summary: "Here you should write a short paragraph (3-5 lines) about your experience, abilities, and professional aspirations.",
-    techSkills: ["add tech skills"],
-    softSkills: ["add sofr skills"],
-    achievements: [
-      { title: "Name of achievement", desc: "A brief description of the achievement and the reason for receiving it." }
-    ],
-    languages: [
-      { name: "language", level: "level" }
-    ],
-    volunteering: [
-      { role: "", org: "roll/organization name", startDate: "start date", endDate: "end date", desc: "A brief description of your activities and contributions." }
-    ],
-    education: [
-      {
-        degree: "Degree Name",
-        institution: "Name of the academic institution",
-        startDate: "start date",
-        endDate: "end date",
-        gpa: "GPA: XX",
-        relevantCourses: ["Course Name 1", "Course Name 2"]
-      }
-    ],
-    experienceEntries: [
-      {
-        role: "Job Title",
-        company: "Company Name",
-        startDate: "start date",
-        endDate: "end date",
-        points: ["Key responsibility or achievement in this role.", "Another significant contribution."]
-      }
-    ],
-    projects: [
-      {
-        name: "Project Name",
-        tools: "Tools you used",
-        description: "A short explanation of the project, its goals, and your contribution."
-      }
-    ],
-    militaryEntries: [
-      {
-        unit: "Unit",
-        role: "Role",
-        startDate: "start date",
-        endDate: "end date",
-        type: "Service Type",
-        points: ["Description of a major activity or responsibility in the military service."]
-      }
-    ]
-  });
+  const [data, setData] = useState(initialResumeData)
+  
+  // const [data, setData] = useState({
+  //   // --- Initial State Definition ---
+  //   name: "Your name",
+  //   title: "Your title",
+  //   contact: {
+  //     phone: "05X-XXXXXXX",
+  //     email: "yourname@email.com",
+  //     linkedin: "linkedin.com/in/username"
+  //   },
+  //   summary: "Here you should write a short paragraph (3-5 lines) about your experience, abilities, and professional aspirations.",
+  //   techSkills: ["add tech skills"],
+  //   softSkills: ["add sofr skills"],
+  //   achievements: [
+  //     { title: "Name of achievement", desc: "A brief description of the achievement and the reason for receiving it." }
+  //   ],
+  //   languages: [
+  //     { name: "language", level: "level" }
+  //   ],
+  //   volunteering: [
+  //     { role: "", org: "roll/organization name", startDate: "start date", endDate: "end date", desc: "A brief description of your activities and contributions." }
+  //   ],
+  //   education: [
+  //     {
+  //       degree: "Degree Name",
+  //       institution: "Name of the academic institution",
+  //       startDate: "start date",
+  //       endDate: "end date",
+  //       gpa: "GPA: XX",
+  //       relevantCourses: ["Course Name 1", "Course Name 2"]
+  //     }
+  //   ],
+  //   experienceEntries: [
+  //     {
+  //       role: "Job Title",
+  //       company: "Company Name",
+  //       startDate: "start date",
+  //       endDate: "end date",
+  //       points: ["Key responsibility or achievement in this role.", "Another significant contribution."]
+  //     }
+  //   ],
+  //   projects: [
+  //     {
+  //       name: "Project Name",
+  //       tools: "Tools you used",
+  //       description: "A short explanation of the project, its goals, and your contribution."
+  //     }
+  //   ],
+  //   militaryEntries: [
+  //     {
+  //       unit: "Unit",
+  //       role: "Role",
+  //       startDate: "start date",
+  //       endDate: "end date",
+  //       type: "Service Type",
+  //       points: ["Description of a major activity or responsibility in the military service."]
+  //     }
+  //   ]
+  // });
 
   // --- State Management Helpers ---
 
@@ -392,7 +395,7 @@ const App = () => {
         <div className="bg-white shadow-2xl print:shadow-none print:m-0 h-fit" style={{ width: '210mm', minHeight: '297mm' }}>
           
           {/* Document Header */}
-          <div className="bg-[#1e293b] text-white py-6 px-12 text-center">
+          <div className="bg-[#1e293b] text-white py-3 px-12 text-center">
             <h1 className="text-3xl font-bold tracking-wider mb-2 uppercase">{data.name}</h1>
             <p className="text-blue-400 text-lg font-medium mb-3">{data.title}</p>
             <div className="flex justify-center items-center gap-8 text-[11px] text-gray-300">
@@ -404,7 +407,7 @@ const App = () => {
 
 
           {/* Document Body */}
-          <div className="flex p-8 gap-4" dir="ltr">
+          <div className="flex p-5 gap-4" dir="ltr">
             {/* Left Column (Narrow) */}
             <div className="w-[30%] space-y-4 text-left">
 
@@ -481,7 +484,7 @@ const App = () => {
             <div className="w-[1px] bg-slate-200"></div>
 
             {/* Right Column (Wide) */}
-            <div className="flex-1 space-y-6 text-left">
+            <div className="flex-1 space-y-4 text-left">
               
               {/* Summary */}
               <section>
@@ -494,7 +497,7 @@ const App = () => {
               {/* Education */}
               <section>
                 <h2 className={sectionHeaderStyle}>Education</h2>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {data.education.map((edu, i) => (
                     <div key={i}>
                       <div className="flex justify-between items-baseline">
@@ -518,7 +521,7 @@ const App = () => {
               {/* Experience */}
               <section>
                 <h2 className={sectionHeaderStyle}>Experience</h2>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {data.experienceEntries.map((exp, i) => (
                     <div key={i}>
                       <div className="flex justify-between items-baseline">
@@ -559,7 +562,7 @@ const App = () => {
               {/* Military Service */}
               <section>
                 <h2 className={sectionHeaderStyle}>Military Service</h2>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {data.militaryEntries.map((entry, i) => (
                     <div key={i}>
                       <div className="flex justify-between items-baseline">
