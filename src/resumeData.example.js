@@ -1,59 +1,61 @@
 export const initialResumeData = {
-  name: "Your name",
-  title: "Your title",
+  name: "",
+  title: "",
   contact: {
-    phone: "05X-XXXXXXX",
-    email: "yourname@email.com",
-    linkedin: "linkedin.com/in/username",
-    github: "github.com/username"
+    phone: "",
+    email: "",
+    linkedin: "",
+    github: ""
   },
-  summary: "Here you should write a short paragraph (3-5 lines) about your experience, abilities, and professional aspirations.",
-  techSkills: [{ category: "Programming Languages", items: ["Python", "C", "C++", "C#", "Java", "JavaScript"] }],
+  summary: "",
+ techSkills: [
+  { category: "", items: [""] }
+  ],
 
-  softSkills: ["add soft skills"],
+  softSkills: [""],
   achievements: [
-    { title: "Name of achievement", desc: "A brief description of the achievement and the reason for receiving it." }
+    { title: "", desc: "" }
   ],
   languages: [
-    { name: "language", level: "level" }
+    { name: "", level: "" }
   ],
   volunteering: [
-    { role: "", org: "role/organization name", startDate: "start date", endDate: "end date", desc: "A brief description of your activities and contributions." }
+    { role: "", org: "", startDate: "", endDate: "", desc: "" }
   ],
   education: [
     {
-      degree: "Degree Name",
-      institution: "Name of the academic institution",
-      startDate: "start date",
-      endDate: "end date",
-      gpa: "GPA: XX",
-      relevantCourses: ["Course Name 1", "Course Name 2"]
+      degree: "",
+      institution: "",
+      startDate: "",
+      endDate: "",
+      gpa: "",
+      relevantCourses: [""]
     }
   ],
   experienceEntries: [
     {
-      role: "Job Title",
-      company: "Company Name",
-      startDate: "start date",
-      endDate: "end date",
-      points: ["Key responsibility or achievement in this role.", "Another significant contribution."]
+      role: "",
+      company: "",
+      startDate: "",
+      endDate: "",
+      points: [""]
     }
   ],
   projects: [
     {
-      name: "Project Name",
-      tools: "Tools you used",
-      description: "A short explanation of the project, its goals, and your contribution."
+      name: "",
+      tools: "",
+      description: ""
     }
   ],
   militaryEntries: [
     {
-      unit: "Unit",
-      role: "Role",
-      startDate: "start date",
-      endDate: "end date",
-      type: "Service Type",
-      points: ["Description of a major activity or responsibility in the military service."]
+      unit: "",
+      role: "",
+      startDate: "",
+      endDate: "",
+      type: "",
+      points: [""]
     }
   ]
 };

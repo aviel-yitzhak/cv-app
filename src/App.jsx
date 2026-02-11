@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Mail, Phone, Linkedin, Github, Trash2, Plus, Layout, Type, Briefcase, GraduationCap, Code, Award, Languages, Heart, Rocket, BookOpen, UserCheck } from 'lucide-react';
 
 // Conditional import: use personal data in dev, example data in production
+
+
 import { initialResumeData as personalData } from './resumeData.js';
 import { initialResumeData as exampleData } from './resumeData.example.js';
 
@@ -87,27 +89,8 @@ const App = () => {
 
 /** Resets all data to empty state */
   const resetData = () => {
-    if (window.confirm('האם אתה בטוח שברצונך למחוק את כל הנתונים?')) {
-      setData({
-        name: "",
-        title: "",
-        contact: {
-          phone: "",
-          email: "",
-          linkedin: "",
-          github: ""
-        },
-        summary: "",
-        techSkills: [],
-        softSkills: [],
-        achievements: [],
-        languages: [],
-        volunteering: [],
-        education: [],
-        experienceEntries: [],
-        projects: [],
-        militaryEntries: []
-      });
+    if (window.confirm('האם אתה בטוח שברצונך לאפס את הדף?')) {
+      window.location.reload();
     }
   };
 
@@ -184,27 +167,30 @@ const App = () => {
             <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
               <Type size={14} /> פרטים אישיים
             </h3>
-            <div className="grid gap-3">
-              <input placeholder="שם מלא" className="w-full border p-2 rounded text-sm text-right" value={data.name || ''} onChange={(e) => updateField('name', e.target.value)} />
-              <input placeholder="תפקיד/תואר" className="w-full border p-2 rounded text-sm text-right" value={data.title || ''} onChange={(e) => updateField('title', e.target.value)} />
-              <div className="grid grid-cols-1 gap-2">
-                <input placeholder="טלפון" className="w-full border p-2 rounded text-sm text-right" value={data.contact.phone || ''} onChange={(e) => updateField('contact.phone', e.target.value)} />
-                <input placeholder="אימייל" className="w-full border p-2 rounded text-sm text-right" value={data.contact.email || ''} onChange={(e) => updateField('contact.email', e.target.value)} />
-                <input placeholder="לינקדאין" className="w-full border p-2 rounded text-sm text-right" value={data.contact.linkedin || ''} onChange={(e) => updateField('contact.linkedin', e.target.value)} />
-                <input placeholder="גיטהאב" className="w-full border p-2 rounded text-sm text-right" value={data.contact.github || ''} onChange={(e) => updateField('contact.linkedin', e.target.value)} />
+            <div className="p-3 border rounded-lg bg-slate-50"></div>
+              <div className="grid gap-3">
+                <input placeholder="שם מלא" className="w-full border p-2 rounded text-sm text-right" value={data.name || ''} onChange={(e) => updateField('name', e.target.value)} />
+                <input placeholder="תפקיד/תואר" className="w-full border p-2 rounded text-sm text-right" value={data.title || ''} onChange={(e) => updateField('title', e.target.value)} />
+                <div className="grid grid-cols-1 gap-2">
+                  <input placeholder="טלפון" className="w-full border p-2 rounded text-sm text-right" value={data.contact.phone || ''} onChange={(e) => updateField('contact.phone', e.target.value)} />
+                  <input placeholder="אימייל" className="w-full border p-2 rounded text-sm text-right" value={data.contact.email || ''} onChange={(e) => updateField('contact.email', e.target.value)} />
+                  <input placeholder="לינקדאין" className="w-full border p-2 rounded text-sm text-right" value={data.contact.linkedin || ''} onChange={(e) => updateField('contact.linkedin', e.target.value)} />
+                  <input placeholder="גיטהאב" className="w-full border p-2 rounded text-sm text-right" value={data.contact.github || ''} onChange={(e) => updateField('contact.github', e.target.value)} />
+                </div>
               </div>
-            </div>
+              
+
           </section>
 
           {/* Professional Summary */}
           <section>
             <h3 className="font-bold text-slate-500 text-xs uppercase tracking-widest mb-4 flex items-center gap-2 text-right">תקציר (Summary)</h3>
-            <textarea 
-              placeholder="כתוב כאן את פסקת התקציר..." 
-              className="w-full border p-2 rounded text-sm h-32 leading-relaxed text-right" 
-              value={data.summary || ''} 
-              onChange={(e) => updateField('summary', e.target.value)} 
-            />
+              <textarea 
+                placeholder="כתוב כאן את פסקת התקציר..." 
+                className="w-full border p-2 rounded text-sm h-32 leading-relaxed text-right" 
+                value={data.summary || ''} 
+                onChange={(e) => updateField('summary', e.target.value)} 
+              />
           </section>
 
           {/* Education */}
@@ -367,15 +353,15 @@ const App = () => {
         {/* שם הקטגוריה */}
         <input 
           placeholder="שם קטגוריה (למשל: Languages)" 
-          className="w-full bg-transparent font-bold mb-2 outline-none text-right text-sm border-b pb-1" 
-          value={skill.category || ''} 
+          className="w-full bg-transparent font-bSold mb-2 outline-none text-right text-sm border-b pb-1" 
+          value={skill.category || ""} 
           onChange={(e) => updateField(`techSkills.${i}.category`, e.target.value)} 
         />
 
         {/* רשימת רובריקות (Items) */}
-        <div className="space-y-2">
+        <div className="grid grid-cols-2 gap-2">
           {skill.items.map((item, itemIdx) => (
-            <div key={itemIdx} className="flex gap-2 items-center flex-row-reverse">
+            <div key={itemIdx} className="flex gap-1 items-center flex-row-reverse">
               <input 
                 placeholder="פריט (למשל: Python)" 
                 className="flex-1 bg-white border p-1 rounded text-xs text-right outline-none" 
@@ -534,9 +520,9 @@ const App = () => {
                     <li key={i} className={bulletPointStyle}>
                       <span className={bulletDotStyle}>•</span>
                       <div className="flex-1">
-                        {skill.category && (
+                   
                           <span className="font-bold text-slate-800">{skill.category || "Category Name"}: </span>
-                        )}
+                  
                         <span className="text-slate-700">
                           {skill.items.filter(item => item.trim() !== "").join(', ') || "Skill 1, Skill 2, Skill 3"}
                         </span>
@@ -613,7 +599,7 @@ const App = () => {
               <section>
                 <h2 className={sectionHeaderStyle}>Summary</h2>
                 <p className="text-[11px] text-slate-700 leading-relaxed text-left">
-                   {data.summary}
+                   {data.summary || "Here you should write a short paragraph (3-5 lines) about your experience, abilities, and professional aspirations."}
                 </p>
               </section>
 
