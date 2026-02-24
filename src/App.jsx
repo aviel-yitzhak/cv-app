@@ -87,12 +87,6 @@ const App = () => {
     event.target.value = '';
   };
 
-/** Resets all data to empty state */
-  const resetData = () => {
-    if (window.confirm('האם אתה בטוח שברצונך לאפס את הדף?')) {
-      window.location.reload();
-    }
-  };
 
   // --- Design Tokens (Consistent UI) ---
   const sectionHeaderStyle = "text-[13px] font-bold border-b-2 border-slate-800 pb-0.5 mb-0.5 uppercase tracking-wider text-slate-800";
@@ -109,10 +103,10 @@ const App = () => {
       {/* --- Sidebar Editor --- */}
       <div className="w-[450px] bg-white border-r border-slate-200 h-screen overflow-y-auto sticky top-0 p-6 print:hidden shadow-xl z-10">
         
-        <div className="flex items-center justify-between mb-8 border-b pb-4">
-          <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-            <Layout className="text-blue-600" size={24} /> Template Editor
-          </h2>
+        <div className="flex items-center justify-between mb-8 border-b pb-4 gap-3">
+          <h2 className="text-base font-bold text-slate-800 flex items-center gap-2 shrink-0">
+  <Layout className="text-blue-600" size={20} /> Template Editor
+</h2>
 
           {/* Action buttons container */}
           <div className="flex gap-2">
@@ -142,13 +136,6 @@ const App = () => {
              Save Data
             </button>
 
-            {/* Reset All button (red) - clears all data */}
-            <button 
-              onClick={resetData}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-700 transition flex items-center gap-2"
-            >
-              מחק הכל
-            </button>
 
             {/* Save as PDF button (blue) - original print function */}
             <button 
